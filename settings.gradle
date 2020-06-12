@@ -1,0 +1,2 @@
+rootProject.name='JunStagram'
+include ':app'
