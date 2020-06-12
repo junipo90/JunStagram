@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "251660815163",
+    "firebase_url": "https://junstagram-99ca0.firebaseio.com",
+    "project_id": "junstagram-99ca0",
+    "storage_bucket": "junstagram-99ca0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251660815163:android:de228f23459bd9a30fc51e",
+        "android_client_info": {
+          "package_name": "me.junipo.junstagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251660815163-os0vajj842254eraeuu2k9o9ghlarjku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCSPKoC_2Z3C4ETNWTMJtatLatgN4UMkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251660815163-os0vajj842254eraeuu2k9o9ghlarjku.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
