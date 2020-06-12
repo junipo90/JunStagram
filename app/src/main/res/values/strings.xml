@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">JunStagram</string>
-<!--    <string name="facebook_app_id">873009302900995</string>-->
-<!--    <string name="fb_login_protocol_scheme">fb873009302900995</string>-->
+    <!--    <string name="facebook_app_id">873009302900995</string>-->
+    <!--    <string name="fb_login_protocol_scheme">fb873009302900995</string>-->
     <string name="facebook_app_id">935132693650366</string>
     <string name="fb_login_protocol_scheme">fb935132693650366</string>
-
 
 
     <!-- Sign In -->
