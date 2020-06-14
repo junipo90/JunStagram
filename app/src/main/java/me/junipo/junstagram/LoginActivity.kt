@@ -27,7 +27,7 @@ import java.util.*
 
 class LoginActivity : AppCompatActivity() {
 
-    // firebase email 인증 변수
+    // firebase auth
     var auth: FirebaseAuth? = null
     var googleSignInClient: GoogleSignInClient? = null
     var GOOGLE_LOGIN_CODE = 9001

@@ -42,5 +42,10 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
 
     implementation 'com.google.firebase:firebase-storage:19.1.0'
+    implementation 'com.google.firebase:firebase-firestore:21.2.1'
+
+    implementation group: 'com.github.bumptech.glide', name: 'glide', version: '4.11.0'
+
+
 
 }
