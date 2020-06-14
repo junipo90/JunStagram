@@ -1,5 +1,6 @@
 package me.junipo.junstagram.navigation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -78,7 +79,7 @@ class DetailViewFragment : Fragment() {
             viewHolder.detailviewitem_favoritecounter_textview.text  = "Likes " + contentDTOs!![position].favoriteCount
 
             // ProfileImage
-//            Glide.with(holder.itemView.context).load(contentDTOs!![position].imageUrl).into(viewHolder.detailviewitem_profile_image)
+            Glide.with(holder.itemView.context).load(contentDTOs!![position].imageUrl).into(viewHolder.detailviewitem_profile_image)
 
             // This code is when the button is clicked
             viewHolder.detailviewitem_favorite_imageview.setOnClickListener {
@@ -99,9 +100,15 @@ class DetailViewFragment : Fragment() {
                 var fragment = UserFragment()
                 var bundle = Bundle()
                 bundle.putString("destinationUid", contentDTOs[position].uid)
-                bundle.putString("Userid", contentDTOs[position].userId)
+                bundle.putString("userId", contentDTOs[position].userId)
                 fragment.arguments = bundle
                 activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_content, fragment)?.commit()
+            }
+            viewHolder.detailviewitem_comment_imageview.setOnClickListener {v ->
+                var intent = Intent(v.context, CommentActivity::class.java)
+                intent.putExtra("contentUid",contentUidList[position])
+                startActivity(intent)
+
             }
 
         }

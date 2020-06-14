@@ -13,6 +13,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
+        <activity android:name=".navigation.CommentActivity">
+        </activity>
         <activity android:name=".navigation.AddPhotoActivity">
         </activity>
         <activity android:name=".LoginActivity">

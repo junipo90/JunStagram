@@ -47,5 +47,4 @@ dependencies {
     implementation group: 'com.github.bumptech.glide', name: 'glide', version: '4.11.0'
 
 
-
 }
