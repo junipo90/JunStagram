@@ -1,4 +1,4 @@
-package me.junipo.junstagram.navigation.model
+package me.junipo.junstagram.model
 
 data class ContentDTO(
     var explain: String? = null,

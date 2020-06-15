@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
@@ -41,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
 
         // email login
         email_login_button.setOnClickListener {
-            signinAndSignup()
+            emailLogin()
         }
 
         // google login
@@ -96,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
             ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("facebook_login", "signInWithCredential:success")
-                    moveMainPage(task.result?.user)
+                    moveMainPage(auth?.currentUser)
                 } else {
                     Log.d("facebook_login", "signInWithCredential:failure", task.exception)
                     Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -118,7 +119,7 @@ class LoginActivity : AppCompatActivity() {
             ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("google_login", "signInWithCredential:success")
-                    moveMainPage(task.result?.user)
+                    moveMainPage(auth?.currentUser)
                 } else {
                     Log.d("google_login", "signInWithCredential:failure", task.exception)
                     Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -151,7 +152,8 @@ class LoginActivity : AppCompatActivity() {
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Creating the error message
-                    moveMainPage(task.result?.user)
+                    Toast.makeText(this,getString(R.string.signup_complete), Toast.LENGTH_LONG).show()
+                    moveMainPage(auth?.currentUser)
                 } else if (!task.exception?.message.isNullOrEmpty()) {
                     // Show the error message
                     Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -167,12 +169,22 @@ class LoginActivity : AppCompatActivity() {
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Login
-                    moveMainPage(task.result?.user)
+                    moveMainPage(auth?.currentUser)
                 } else {
                     // Show the error message
                     Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    fun emailLogin() {
+
+        if (email_edittext.text.toString().isNullOrEmpty() || password_edittext.text.toString().isNullOrEmpty()) {
+            Toast.makeText(this, getString(R.string.signout_fail_null), Toast.LENGTH_SHORT).show()
+
+        } else {
+            signinAndSignup()
+        }
     }
 
     fun moveMainPage(user: FirebaseUser?) {
@@ -181,4 +193,6 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
     }
+
+
 }

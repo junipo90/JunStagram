@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_grid.view.*
 import me.junipo.junstagram.R
-import me.junipo.junstagram.navigation.model.ContentDTO
+import me.junipo.junstagram.model.ContentDTO
 
 class GridFragment : Fragment() {
     var firestore: FirebaseFirestore? = null

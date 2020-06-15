@@ -16,14 +16,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.android.synthetic.main.activity_main.*
 import me.junipo.junstagram.R
-import me.junipo.junstagram.navigation.model.ContentDTO
+import me.junipo.junstagram.model.ContentDTO
 import kotlinx.android.synthetic.main.fragment_user.view.*
 import me.junipo.junstagram.LoginActivity
 import me.junipo.junstagram.MainActivity
-import me.junipo.junstagram.navigation.model.FollowDTO
+import me.junipo.junstagram.model.AlarmDTO
+import me.junipo.junstagram.model.FollowDTO
+import me.junipo.junstagram.util.FcmPush
 
 class UserFragment : Fragment() {
     var fragmentView: View? = null
@@ -147,6 +148,7 @@ class UserFragment : Fragment() {
                 followDTO = FollowDTO()
                 followDTO!!.followerCount = 1
                 followDTO!!.followers[currentUserUid!!] = true
+                followAlarm(uid!!)
 
                 transaction.set(tsDocFollower, followDTO!!)
                 return@runTransaction
@@ -159,11 +161,25 @@ class UserFragment : Fragment() {
                 // It add following third person when a third person do not follow me
                 followDTO!!.followerCount = followDTO!!.followerCount + 1
                 followDTO!!.followers[currentUserUid!!] = true
+                followAlarm(uid!!)
             }
             transaction.set(tsDocFollower, followDTO!!)
             return@runTransaction
         }
 
+    }
+
+    fun followAlarm(destinationUid:String){
+        var alarmDTO = AlarmDTO()
+        alarmDTO.destinationUid = destinationUid
+        alarmDTO.userId = auth?.currentUser?.email
+        alarmDTO.uid = auth?.currentUser?.uid
+        alarmDTO.kind = 2
+        alarmDTO.timestamp = System.currentTimeMillis()
+        FirebaseFirestore.getInstance().collection("alarms").document().set(alarmDTO)
+
+        var message = auth?.currentUser?.email + getString(R.string.alarm_follow)
+        FcmPush?.instance.sendMessage(destinationUid, "알림 메세지 입니다.", message)
     }
 
     fun getProfileImage() {
